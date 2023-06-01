@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <title>Inicio de Sesión - Turismo Real S.A.</title>
+
+</head>
+
+<body class="background">
+    <div class="container">
+        <div class="row">
+            <div class="container">
+                <div class="card card-container">
+                    <div class="card-header mb-4">
+                        <img id="profile-img" class="profile-img-card" alt="Logo"
+                            src="https://designwebirg.com/assets/img/logo_turismo.png" />
+                    </div>
+                    <b id="alert" class="alert alert-danger text-center" hidden></b>
+                    <form class="form-signin" id="loginForm">
+                        <div class="form-group">
+                            <label for="user">Usuario <span class="text-danger">*</span></label>
+                            <input type="text" id="user" value="contacto@designwebirg.com" name="user"
+                                class="form-control" placeholder="Ingrese Usuario" autofocus>
+                        </div>
+                        <div class="form-group mt-2">
+                            <label for="pwd">Contraseña <span class="text-danger">*</span></label>
+                            <input type="password" id="pwd" value="a" name="pwd" class="form-control"
+                                placeholder="Ingrese Contraseña">
+                        </div>
+                        <br>
+                        <div class="row">
+                            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Ingresar</button>
+                        </div>
+                    </form><!-- /form -->
+                </div><!-- /card-container -->
+            </div><!-- /container -->
+        </div>
+        <div class="copyright ptb-20 white_bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center text-white">
+                        <p><small>Copyright© <strong class="">TURISMO REAL</strong> 2022. <br> Todos los derechos
+                                reservados.
+                                <hr> Desarrollado por <br><b>Macacos IT & EquipoRocket</b></small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let alerta = document.getElementById('alert');
+        alerta.innerText = '';
+        const {
+            remote
+        } = require('electron');
+        const main = remote.require('./main');
+
+        const productForm = document.querySelector("#loginForm");
+
+        productForm.addEventListener("submit", async (e) => {
+            // try {
+            e.preventDefault();
+            let user = document.getElementById('user');
+            let pwd = document.getElementById('pwd');
+
+            let usuario = user.value;
+            let password = pwd.value;
+            if (usuario.length < 1 || password.length < 1) {
+                alerta.removeAttribute("hidden");
+                user.focus();
+                alerta.innerText = "* Usuario y Contraseña son Obligatorias"
+            } else {
+
+                alerta.setAttribute("hidden", true);
+                alerta.innerText = '';
+                const valida_data = {
+                    usuario: usuario,
+                    password: password,
+                };
+                const validaLogin = await main.validateLogin(valida_data);
+                console.log(validaLogin);
+                if (validaLogin != 'ok') {
+                    alerta.removeAttribute("hidden");
+                    user.focus();
+                    alerta.innerText = (validaLogin);
+                }
+            }
+
+
+            // if(searchReports != 'none'){
+            //     dw.href = 'http://localhost/don_humbert_desk/pdfs/'+searchReports;
+            //     dw.removeAttribute("hidden");
+            // }else{
+            //     dw.setAttribute("hidden", true);
+            // }
+            // console.log(searchReports);
+            // } catch (error) {
+            //     dw.setAttribute("hidden", true);
+            //     console.log(error);
+            // }
+        });
+    </script>
+</body>
+
+</html>

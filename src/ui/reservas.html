@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
+    </script>
+    <!-- CUSTOM DASHBOARD CONTENT -->
+    <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="../assets/css/sb-admin-2.min.css" rel="stylesheet">
+    <!-- Custom styles for this page -->
+    <title>Reporteria Reservas</title>
+
+</head>
+
+<body>
+
+    <div class="container p-4">
+        <div class="card ">
+            <br>
+            <!-- TITLE -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="page-header text-center">
+                        <h3>Ganancias por departamento</h3>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <!-- CARDS -->
+            <div class="row">
+                <div class="col-md-10 my-auto">
+                    <form action="" class="card card-body" id="productForm">
+                        <div class="form-group p-2">
+                            <label for="sucursal">Sucursal</label>
+                            <select name="sucursal" id="sucursal" class="form-control">
+                                <option value="0">Seleccione...</option>
+                            </select>
+                        </div>
+                        <div class="form-group p-2">
+                            <label for="periodo">Periodo</label>
+                            <select name="periodo" id="periodo" class="form-control">
+                                <option value="dia">Día</option>
+                                <option value="mes">Mes</option>
+                                <option value="annio">Año</option>
+                            </select>
+                        </div>
+                        <hr>
+                        <button type="btn_submit" class="btn btn-primary">Generar Informe</button>
+                    </form>
+                   
+                </div>
+            </div>
+            <hr>
+            <div class="row text-center">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 mb-4"><a href="" id="download" hidden download="informe.pdf" class="btn btn-sm btn-danger">Descargar PDF</a></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const {
+            remote
+        } = require('electron');
+        const main = remote.require('./main');
+        const getSucursales = async () => {
+            const sucusales = await main.getSucursalesDB();
+            console.log(sucusales);
+            selectElement = document.getElementById('sucursal');
+            while ((row = await sucusales.getRow())) {
+                console.log(row);
+                selectElement.add(new Option(row.SUCURSAL, row.ID_SUCURSAL));
+            }
+            console.log(sucusales)
+        }
+        getSucursales();
+
+        const productForm = document.querySelector("#productForm");
+        let dw = document.getElementById('download');
+        productForm.addEventListener("submit", async (e) => {
+            try {
+                e.preventDefault();
+                let sucursal = document.getElementById("sucursal");
+                let periodo = document.getElementById("periodo");
+                const search_data = {
+                    sucursal: sucursal.value,
+                    periodo: periodo.value,
+                };
+                // console.log(search_data)
+                const searchReports = await main.getReports(search_data);
+               
+                if(searchReports != 'none'){
+                    dw.href = 'http://localhost/don_humbert_desk/pdfs/'+searchReports;
+                    dw.removeAttribute("hidden");
+                }else{
+                    dw.setAttribute("hidden", true);
+                }
+                console.log(searchReports);
+            } catch (error) {
+                dw.setAttribute("hidden", true);
+                console.log(error);
+            }
+        });
+    </script>
+</body>
+
+</html>

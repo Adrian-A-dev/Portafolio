@@ -1,0 +1,23 @@
+{
+  "name": "donhumberto_js",
+  "version": "1.0.0",
+  "description": "Don Humberto Desk App",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "electron src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "bcryptjs": "^2.4.3",
+    "electron-reload": "^2.0.0-alpha.1",
+    "html-pdf": "^3.0.1",
+    "html-pdf-node": "^1.0.7",
+    "oracledb": "^5.5.0"
+  },
+  "devDependencies": {
+    "electron": "^8.2.1"
+  }
+}

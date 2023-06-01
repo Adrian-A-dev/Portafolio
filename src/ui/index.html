@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/style_index.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/icon-font.min.css">
+
+    <title>Turismo Real S.A.</title>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://threejs.org/examples/js/libs/stats.min.js"></script>
+
+</head>
+
+<body>
+
+
+
+    <div class="jumbotron jumbotron-main" id="home">
+
+        <div id="particles-js"><canvas class="particles-js-canvas-el" style="width: 100%; height: 100%;"></canvas></div>
+        <!-- /.particles div -->
+        <div class="container center-vertically-holder">
+            <div class="mono p-2 border text-center">
+                <a href="#!" style="background-color: #fff; padding: 20px; position: absolute; top: 50px;right: 100px;border-radius: 20px;">
+                    <img src="../assets/images/macacos_it.jpg" alt="macacos_it"
+                        style="z-index:99999;width: 250px; border-radius: 10%; background-color: #de8806; padding: 5px;">
+                    <hr>
+                    <h5 class="background-color:#000"><b>MACACOS IT</b></h5>
+                </a>
+            </div>
+
+            <div class="center-vertically">
+
+
+                <div class="col-sm-8 col-sm-offset-2 col-lg-6 col-lg-offset-3 text-center">
+
+                    <div class="card p-2" style="background-color: #f7f7f7; ">
+
+                        <h1 class="scaleReveal text-muted" data-sr-id="46"
+                            style=" visibility: visible;  -webkit-transform: translateY(0) scale(1); opacity: 1;transform: translateY(0) scale(1); opacity: 1;-webkit-transition: -webkit-transform 1.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0.05s, opacity 1.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0.05s; transition: transform 1.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0.05s, opacity 1.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0.05s; ">
+                            Bienvenido a <b>TURISMO REAL</b></strong>.
+                        </h1>
+                    </div>
+                    <div class="row p-2">
+                        
+                        <div class="col-md-6">
+                            <div class="card" style="border-radius: 20px;">
+                                <button class="btn btn-primary text-white" type="button"  style="border-radius: 20px;" onclick="reportes()">
+                                    <i class="fa fa-file-o fa-3x text-white"></i>
+                                    <h6 class="mt-2">Reporte por Departamentos</h6>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card" style="border-radius: 20px;">
+                                <button class="btn btn-danger text-white" type="button" style="border-radius: 20px;" onclick="salir()">
+                                    <i class="fa fa-power-off fa-3x text-white"></i>
+                                    <h6 class="mt-2"><br> Cerrar Sesión</h6>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#ideology" data-id="ideology" class="scroll-link">
+                        <div class="scroll-indicator rotateBottomReveal" data-sr-id="40"
+                            style=" visibility: visible;  -webkit-transform: translateY(0) scale(1) rotateX(0); opacity: 1;transform: translateY(0) scale(1) rotateX(0); opacity: 1;-webkit-transition: -webkit-transform 1.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0.05s, opacity 1.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0.05s; transition: transform 1.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0.05s, opacity 1.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0.05s; ">
+                            <span class="ion-mouse"></span><br>
+                            <span class="ion-android-arrow-down arrow-scroll-indicator"></span>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 80,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#ffffff"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    },
+                    "polygon": {
+                        "nb_sides": 5
+                    },
+                    "image": {
+                        "src": "img/github.svg",
+                        "width": 100,
+                        "height": 100
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": false,
+                    "anim": {
+                        "enable": false,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                        "speed": 40,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#ffffff",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 6,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "grab"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 140,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "bubble": {
+                        "distance": 400,
+                        "size": 40,
+                        "duration": 2,
+                        "opacity": 8,
+                        "speed": 3
+                    },
+                    "repulse": {
+                        "distance": 200,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+    </script>
+
+    <script>
+        const {
+            remote
+        } = require('electron');
+        const main = remote.require('./main');
+        function reportes(){
+            return main.reporteReservaWindow();
+        }
+
+        function salir(){
+            return main.cerrar();
+        }
+    </script>
+</body>
+
+</html>
